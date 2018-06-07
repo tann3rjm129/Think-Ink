@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+
+  <!-- <meta name="viewport" content="initial-scale=1.0; width=device-width;"> -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+  <title>Think Ink | Find Your Next Tattoo</title>
+
+  <!-- Bootstrap -->
+
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ"
+    crossorigin="anonymous">
+  <script src="https://code.jquery.com/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous"></script>
+
+  <!-- LINK TO CSS GOES HERE -->
+
+  <link href="assets/css/style.css" rel="stylesheet" type="text/css">
+
+
+  <!-- Link to javascript -->
+  <script src="assets/javascript/app.js"></script>
+  <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCe56kBedEPlgT_NnffILHycZisGKnUznQ&libraries=geometry"></script>
+
+
+  <!-- LINK TO  font -->
+
+
+  <link href="https://fonts.googleapis.com/css?family=Lobster|Open+Sans" rel="stylesheet">
+
+  <link href="https://fonts.googleapis.com/css?family=Lobster+Two|Open+Sans" rel="stylesheet">
+
+</head>
+
+
+
+
+<body>
+  <!-- tried adding bottom padding here for new image -->
+  <!-- style="padding-bottom: 17.14%;" -->
+  <div id="image" style="padding-bottom: 17.138%;">
+    <div id="wrapper">
+
+      <div id="bodyContainer">
+
+        <div id="search-bar">
+          <h2 style="padding-top: 46%; padding-bottom: 1%;" class="welcome lobster2">Find a tattoo artist near me</h2>
+          <div id="search">
+            <input id="userCity" class="text-center" type="text" placeholder="Enter your city" required>
+            <!-- <a href="/search"> -->
+            <button class="btn btn-outline-secondary" id="search-btn" type=" button ">Go</button>
+            <!-- </a> -->
+            <a href="">
+              <button class="btn btn-outline-secondary" id="findMe" type=" button ">Find Me</button>
+            </a>
+          </div>
+          <br>
+
+          <div id="home_link">
+            <a href="/register.html">
+              <!-- original padding-bottom: 85%; with original MainImage-->
+              <a href="register.html">
+                <p id="link" style="padding-top: 0%;">
+                  Click here to make an artist profile</p>
+              </a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+    <script>
+
+      $('#search-btn').on('click', function (event) {
+        event.preventDefault();
+        let userCity = $('#userCity').val()
+        if (!userCity) {
+          $.get('/search').then((res) => {
+            document.write(res)
+          })
+        } else {
+          $.get(`/search/city/${userCity}`).then((res) => {
+            document.write(res)
+          })
+        }
+      })
+// testing geolocation 
+// var x = document.getElementById("demo");
+
+// function getLocation() {
+//     if (navigator.geolocation) {
+//         navigator.geolocation.getCurrentPosition(showPosition);
+//     } else {
+//         x.innerHTML = "Geolocation is not supported by this browser.";
+//     }
+// }
+
+// function showPosition(position) {
+//     x.innerHTML = "Latitude: " + position.coords.latitude + 
+//     "<br>Longitude: " + position.coords.longitude; 
+// }
+
+// function showError(error) {
+//     switch(error.code) {
+//         case error.PERMISSION_DENIED:
+//             x.innerHTML = "User denied the request for Geolocation."
+//             break;
+//         case error.POSITION_UNAVAILABLE:
+//             x.innerHTML = "Location information is unavailable."
+//             break;
+//         case error.TIMEOUT:
+//             x.innerHTML = "The request to get user location timed out."
+//             break;
+//         case error.UNKNOWN_ERROR:
+//             x.innerHTML = "An unknown error occurred."
+//             break;
+//     }
+// }
+
+// console.log(getLocation());
+// console.log(showPosition(position));
+// console.log(showError(error));
+
+// function getDistance(req)
+//   {
+
+//      //Find the distance
+//      var distanceService = new google.maps.DistanceMatrixService();
+//      distanceService.getDistanceMatrix({
+//         origins: [req],
+//         destinations: ["3257 Fitzgerald Road, Rancho Cordova CA 95742"],
+//         travelMode: google.maps.TravelMode.WALKING,
+//         unitSystem: google.maps.UnitSystem.METRIC,
+//         durationInTraffic: true,
+//         avoidHighways: false,
+//         avoidTolls: false
+//     },
+//     function (response, status) {
+//         if (status !== google.maps.DistanceMatrixStatus.OK) {
+//             console.log('Error:', status);
+//         } else {
+//             console.log(response);
+
+//         }
+//     });
+//   }
+
+// $('#search-btn').on("click", function() {
+//         event.preventDefault();
+
+//         var searchLocation = $('#userCity').val().trim();
+
+//         getDistance(searchLocation);
+//             // module.exports = searchLocation;
+//     });
+
+
+
+
+
+//                     };
+
+
+    </script>
+
+</body>
+
+</html>
